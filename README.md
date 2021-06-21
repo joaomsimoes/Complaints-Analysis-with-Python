@@ -4,16 +4,18 @@ scrappes the title and complaints from the Portal da Queixa website and saves it
 
 ## Installation
 
-1. Install Python 3
-2. Create virtual environment
-
-3. Activate virtual environment
-
-
-4. Install Scrapy
+1. BeautifulSoup
+2. urllib
 
 ## Run
 
-Get all complaints from Vodafone brand
+$python main.py
+
+Ex. - Get complaints from Ikea brand
 
 getLinks('https://portaldaqueixa.com/brands/ikea/complaints', 'ikea')
+
+
+## Possible Errors
+
+1. 403
