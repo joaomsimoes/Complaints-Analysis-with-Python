@@ -48,6 +48,3 @@ def getLinks(pageUrl, brand):
         print(newPage)
         pages.add(newPage)
         getLinks(newPage, brand)
-
-
-getLinks('https://portaldaqueixa.com/brands/ikea/complaints', 'ikea')
