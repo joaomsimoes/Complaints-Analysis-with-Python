@@ -8,7 +8,7 @@ sys.setrecursionlimit(10000)
 pages = set()
 dictf = {}
 
-def getLinks(pageUrl, brand):
+def getLinks(brand):
   ''' Portal da Queixa WebScrapper. It scrappes only the ../{brand}/complaint/* pages
   Arguments:
     pageUrl: starting page, ex. 'https://portaldaqueixa.com/brands/{brand}/complaints/'
@@ -19,7 +19,7 @@ def getLinks(pageUrl, brand):
   global pages, dictf
 
   # open the html and start the soup 
-  html = urlopen(pageUrl)
+  html = urlopen('https://portaldaqueixa.com/brands/{}/complaints/'.format(brand))
   bs = BeautifulSoup(html, 'html.parser')
 
   # get the title and complaint text from the page 
@@ -40,11 +40,11 @@ def getLinks(pageUrl, brand):
       writer.writerow([key, value])
 
   # find a new link and iterate it over
-  for link in bs.find_all('a', href=re.compile('^(https://portaldaqueixa.com/brands/{}/complaints/{})'.format(brand, brand))):
+  for link in bs.find_all('a', href=re.compile('^(https://portaldaqueixa.com/brands/{}/complaints/{}.*)'.format(brand, brand))):
     if 'href' in link.attrs:
       if link.attrs['href'] not in pages:
         newPage = link.attrs['href']
         print('-'*20)
         print(newPage)
         pages.add(newPage)
-        getLinks(newPage, brand)
+        getLinks(brand)
