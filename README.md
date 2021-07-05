@@ -17,4 +17,4 @@ input: ikea
 ## Possible Errors
 
 1. 403 - To many requests! 
-2. some brands have a different name in the link, for example: nowo - uses cabovisao
+2. some brands have a different name in the link, for example: nowo uses old name: cabovisao
