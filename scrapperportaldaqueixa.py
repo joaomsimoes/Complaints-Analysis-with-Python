@@ -10,8 +10,7 @@ dictf = {}
 
 def getLinks(brand):
   ''' Portal da Queixa WebScrapper. It scrappes only the ../{brand}/complaint/* pages
-  Arguments:
-    pageUrl: starting page, ex. 'https://portaldaqueixa.com/brands/{brand}/complaints/'
+  Arguments>
     brand: choose the brand name from the link, ex. "uber-eats"
   Return:
     CSV file with the name of the brand and for each row complain title and its text'''
