@@ -1,6 +1,6 @@
 # Scrapper-PortaldaQueixa
 
-scrappes the title and complaints from the Portal da Queixa website and saves it to a csv file
+scrappes the title complaint and complaints from the Portal da Queixa website and saves it to a csv file
 
 ## Installation
 
