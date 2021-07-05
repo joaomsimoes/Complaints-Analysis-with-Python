@@ -5,7 +5,6 @@ scrappes the title and complaints from the Portal da Queixa website and saves it
 ## Installation
 
 1. BeautifulSoup
-2. urllib ?
 
 ## Run
 
@@ -18,4 +17,4 @@ input: ikea
 ## Possible Errors
 
 1. 403 - To many requests! 
-2. some brands have a different name in the link, for example: continente
+2. some brands have a different name in the link, for example: nowo - uses cabovisao
