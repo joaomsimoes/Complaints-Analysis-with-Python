@@ -13,7 +13,7 @@ $python main.py
 
 Ex. - Get complaints from Ikea brand
 
-getLinks('ikea')
+input: ikea
 
 ## Possible Errors
 
