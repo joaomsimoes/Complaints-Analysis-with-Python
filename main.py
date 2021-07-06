@@ -1,5 +1,6 @@
-from scrapperportaldaqueixa import getLinks
+from scrapperportaldaqueixa import getLinks, writeFile
 
 brand = input('choose a brand:')
 
-getLinks(brand)
+complaints = getLinks(brand)
+writeFile(brand, complaints)
