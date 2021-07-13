@@ -2,8 +2,7 @@ from urllib.request import urlopen
 from bs4 import BeautifulSoup
 import csv
 import re
-import sys
-sys.setrecursionlimit(10000)
+
 
 def getLinks(brand, pageCount = None):
   ''' Portal da Queixa WebScrapper. It scrappes only the ../{brand}/complaint/* pages
@@ -47,13 +46,16 @@ def getInfo(brand, url):
   html = urlopen(url)
   bs = BeautifulSoup(html, 'html.parser')
 
+  date_find = bs.find("time")
+  date_text = date_find.get_text()[1:]
+
   brand_title_find = bs.find('h4')
   brand_title_text = (brand_title_find.get_text())[len(brand)+3:]
 
   comentario_find = bs.find_all("div", class_='complaint-detail-body-description')
   comentario_text = ''.join([c.get_text(' ', strip=True).strip() for c in comentario_find])
 
-  return (brand_title_text, comentario_text)
+  return (date_text, brand_title_text, comentario_text)
 
 def writeFile(brand, complaints, append = False, header = True):
   writeType = "a" if append else "w+"
@@ -61,6 +63,6 @@ def writeFile(brand, complaints, append = False, header = True):
     # saves all the complaints to a csv file
     writer = csv.writer(a_file)
     if header:
-      writer.writerow(['title', 'comment'])
-    for (title, comment) in complaints:
-      writer.writerow([title, comment])
+      writer.writerow(['date', 'title', 'comment'])
+    for (date, title, comment) in complaints:
+      writer.writerow([date, title, comment])
