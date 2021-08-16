@@ -5,6 +5,8 @@ scrappes the title complaint and complaints from the Portal da Queixa website an
 ## Installation
 
 1. BeautifulSoup
+2. PyMySQL
+3. Textacy
 
 ## Run
 

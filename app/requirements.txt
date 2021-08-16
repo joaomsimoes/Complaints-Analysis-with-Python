@@ -1,0 +1,11 @@
+streamlit
+nltk
+textacy
+sklearn
+wordcloud
+pandas
+matplotlib
+bs4
+pymysql
+nltk.download('punkt')
+nltk.download('stopwords')

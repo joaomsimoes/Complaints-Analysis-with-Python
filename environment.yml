@@ -1,0 +1,12 @@
+name: scrapper
+dependencies:
+  - streamlit
+  - nltk
+  - textacy
+  - sklearn
+  - wordcloud
+  - pandas
+  - matplotlib
+  - bs4
+  - pymysql
+prefix: /home/user/scrapper/envs/scrapper
