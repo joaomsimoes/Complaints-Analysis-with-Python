@@ -11,7 +11,7 @@ def home():
     st.write('We need some information to predict the car price')
     col1, col2 = st.columns(2)
     with col1:
-        brand = st.selectbox('Escolha uma marca', ('worten', 'meo', 'shein'))
+        brand = st.selectbox('Escolha uma marca', ('worten', 'meo', 'shein', 'fnac'))
     with col2:
         n_grams = st.selectbox('N-Grams', (1, 2, 3))
     count_result = count_queixas(brand)

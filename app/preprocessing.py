@@ -23,10 +23,12 @@ def date_parser(date_string):
 
 
 def stop_words():
+    nltk.download('stopwords')
     stopwords = nltk.corpus.stopwords.words('portuguese')
-    new_stopwords = ['desde', 'ainda', 'tarde', 'venho', 'noite', 'dia', 'boa', 'nao', 'ja', 'pois', 'ser', 'ter',
+    new_stopwords = ['tarde', 'venho', 'noite', 'dia', 'ja', 'pois', 'ser', 'ter', 'tendo', 'nao',
                      'fiz', 'janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro',
-                     'outubro', 'novembro', 'dezembro', 'ate', 'talvez', 'aqui', 'portanto', 'estar', 'iria']
+                     'outubro', 'novembro', 'dezembro', 'ate', 'talvez', 'aqui', 'portanto', 'estar', 'iria', 'ia',
+                     'eis', 'vem', 'ir', 'preciso', 'sido']
     stopwords.extend(new_stopwords)
 
     return stopwords

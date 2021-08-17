@@ -6,11 +6,10 @@ import streamlit as st
 
 def display_topics(model, features, no_top_words=5):
     for topic, word_vector in enumerate(model.components_):
-        total = word_vector.sum()
         largest = word_vector.argsort()[::-1]
-        st.subheader('\nTopic %02d' % topic)
+        st.subheader('\nTopic {}'.format(topic))
         for i in range(0, no_top_words):
-            st.text(' %s (%2.2f)' % (features[largest[i]], word_vector[largest[i]] * 100.0 / total))
+            st.text('{}'.format(features[largest[i]]))
 
 
 def word_cloud(word_freq, title=None, max_words=200):

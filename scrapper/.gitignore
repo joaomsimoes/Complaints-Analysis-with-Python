@@ -1,2 +1,2 @@
 *.csv
-/scrapper/gcp.json
+gcp.json
