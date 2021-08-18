@@ -3,7 +3,6 @@ import json
 import pandas as pd
 
 def sql_df(brand=None):
-
     conn = pymysql.connect(host=st.secrets['host'], user=st.secrets['user'], passwd=st.secrets['passwd'], db=st.secrets['db'])
     cur = conn.cursor()
 
