@@ -5,7 +5,7 @@ import streamlit as st
 
 def sql_df(brand=None):
 
-    conn = pymysql.connect(host=st.secrets[host], user=st.secrets[user], passwd=st.secrets[passwd], db=st.secrets[db])
+    conn = pymysql.connect(host=st.secrets["host"], user=st.secrets['user'], passwd=st.secrets['passwd'], db=st.secrets['db'])
     cur = conn.cursor()
 
     query = "SELECT * FROM {}".format(brand)
@@ -19,7 +19,7 @@ def sql_df(brand=None):
 
 def count_queixas(brand=None):
 
-    conn = pymysql.connect(host=st.secrets[host], user=st.secrets[user], passwd=st.secrets[passwd], db=st.secrets[db])
+    conn = pymysql.connect(host=st.secrets['host'], user=st.secrets['user'], passwd=st.secrets['passwd'], db=st.secrets['db'])
     cur = conn.cursor()
 
     query = "SELECT COUNT(*) FROM {}".format(brand)
