@@ -1,6 +1,7 @@
 import pymysql
 import json
 import pandas as pd
+import streamlit as st
 
 def sql_df(brand=None):
     conn = pymysql.connect(host=st.secrets['host'], user=st.secrets['user'], passwd=st.secrets['passwd'], db=st.secrets['db'])
@@ -30,3 +31,9 @@ def count_queixas(brand=None):
     conn.close()
 
     return count_result
+
+
+"host" = "34.78.88.69"
+"user" = "root"
+"passwd" = "Master7%1"
+"db" = "scrapper"
