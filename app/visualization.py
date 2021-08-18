@@ -1,6 +1,7 @@
 from wordcloud import WordCloud
 from collections import Counter
 import matplotlib.pyplot as plt
+import plotly.express as px
 import streamlit as st
 
 
@@ -36,7 +37,7 @@ def describe(brand=None):
 
 def time_series(brand=None):
     brand['year-month'] = brand['data'].dt.strftime('%Y-%m')
-    fig, ax = plt.subplots()
-    brand.groupby('year-month').size().plot(title='Queixas ao longo do tempo', color='red')
+    timeseries = brand.groupby('year-month', as_index=False).size()
+    fig = px.line(timeseries, x="year-month", y='size', labels={'year-month': 'Ano-mês', 'size': 'Total'}, )
 
-    st.pyplot(fig)
+    st.write(fig)
