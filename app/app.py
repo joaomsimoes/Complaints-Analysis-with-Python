@@ -3,7 +3,7 @@ from app.visualization import *
 from app.sql_conn import *
 
 
-def home():
+def app():
     st.set_option('deprecation.showPyplotGlobalUse', False)
 
     st.title('Portal da Queixa - Análise das marcas')

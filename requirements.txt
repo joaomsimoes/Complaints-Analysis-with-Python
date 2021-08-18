@@ -7,3 +7,5 @@ pandas
 matplotlib
 bs4
 pymysql
+plotly
+uvicorn
