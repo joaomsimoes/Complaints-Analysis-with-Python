@@ -32,9 +32,3 @@ def count_queixas(brand=None):
     conn.close()
 
     return count_result
-
-
-"host" = "34.78.88.69"
-"user" = "root"
-"passwd" = "Master7%1"
-"db" = "scrapper"
