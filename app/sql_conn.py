@@ -3,8 +3,6 @@ import json
 import pandas as pd
 
 def sql_df(brand=None):
-    f = open('app/gcp.json')
-    data = json.load(f)
 
     conn = pymysql.connect(host=st.secrets['host'], user=st.secrets['user'], passwd=st.secrets['passwd'], db=st.secrets['db'])
     cur = conn.cursor()
@@ -19,10 +17,8 @@ def sql_df(brand=None):
     return df
 
 def count_queixas(brand=None):
-    f = open('app/gcp.json')
-    data = json.load(f)
 
-    conn = pymysql.connect(host=data['host'], user=data['user'], passwd=data['passwd'], db=data['db'])
+    conn = pymysql.connect(host=st.secrets['host'], user=st.secrets['user'], passwd=st.secrets['passwd'], db=st.secrets['db'])
     cur = conn.cursor()
 
     query = "SELECT COUNT(*) FROM {}".format(brand)
