@@ -4,8 +4,6 @@ textacy
 sklearn
 wordcloud
 pandas
-matplotlib
 bs4
 pymysql
 plotly
-uvicorn

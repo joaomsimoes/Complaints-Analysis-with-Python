@@ -7,6 +7,7 @@ import pandas as pd
 import streamlit as st
 
 def date_parser(date_string):
+    """convert dates have convert """
 
     mapping = {'janeiro': '01', 'fevereiro': '02', 'março': '03',
                'abril': '04', 'maio': '05', 'junho': '06',
@@ -19,10 +20,13 @@ def date_parser(date_string):
     month = mapping[month_pt]
     date_iso = '{}-{:02d}-{:02d}'.format(year, int(month), int(day))
     date_object = datetime.datetime.strptime(date_iso, '%Y-%m-%d')
+
     return date_object
 
 
 def stop_words():
+    """download the portuguese stopwords from the nltk library"""
+
     nltk.download('stopwords')
     stopwords = nltk.corpus.stopwords.words('portuguese')
     new_stopwords = ['tarde', 'venho', 'noite', 'dia', 'ja', 'pois', 'ser', 'ter', 'tendo', 'nao',
@@ -35,6 +39,8 @@ def stop_words():
 
 
 def preprocessing(df=None):
+    """text preprocessing"""
+
     df['comment'] = df['comment'].apply(lambda token: [word for word in token if word.isalpha()])
     df['comment'] = df['comment'].apply(str)
 
