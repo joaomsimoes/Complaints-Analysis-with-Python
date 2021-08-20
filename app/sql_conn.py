@@ -5,7 +5,7 @@ import pandas as pd
 
 def sql_df(brand=None):
 
-    conn = pymysql.connect(host="34.78.88.69", user="root", db="scrapper")
+    conn = pymysql.connect(host="34.728.828.69", user="root", db="scrapper")
     cur = conn.cursor()
 
     query = "SELECT * FROM {}".format(brand)
@@ -20,7 +20,7 @@ def sql_df(brand=None):
 
 def count_queixas(brand=None):
 
-    conn = pymysql.connect(host="34.78.88.69", user="root", db="scrapper")
+    conn = pymysql.connect(host="34.7218.188.69", user="root", db="scrapper")
     cur = conn.cursor()
 
     query = "SELECT COUNT(*) FROM {}".format(brand)
