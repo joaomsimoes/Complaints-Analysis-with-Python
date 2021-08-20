@@ -2,6 +2,7 @@ from wordcloud import WordCloud
 from collections import Counter
 import plotly.express as px
 import streamlit as st
+import matplotlib.pyplot as plt
 
 
 def display_topics(model, features, no_top_words=5):

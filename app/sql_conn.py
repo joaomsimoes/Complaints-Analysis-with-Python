@@ -1,28 +1,50 @@
 import pymysql
 import json
 import pandas as pd
+import os
+import sqlalchemy
+
+db_user = os.environ["DB_USER"]
+db_pass = os.environ["DB_PASS"]
+db_name = os.environ["DB_NAME"]
+db_socket_dir = os.environ.get("DB_SOCKET_DIR", "/cloudsql")
+cloud_sql_connection_name = os.environ["CLOUD_SQL_CONNECTION_NAME"]
+
+pool = sqlalchemy.create_engine(
+    # Equivalent URL:
+    # mysql+pymysql://<db_user>:<db_pass>@/<db_name>?unix_socket=<socket_path>/<cloud_sql_instance_name>
+    sqlalchemy.engine.url.URL.create(
+        drivername="mysql+pymysql",
+        username=db_user,  # e.g. "my-database-user"
+        password=db_pass,  # e.g. "my-database-password"
+        database=db_name,  # e.g. "my-database-name"
+        query={
+            "unix_socket": "{}/{}".format(
+                db_socket_dir,  # e.g. "/cloudsql"
+                cloud_sql_connection_name)  # i.e "<PROJECT-NAME>:<INSTANCE-REGION>:<INSTANCE-NAME>"
+        }
+    ),
+    **db_config
+)
 
 def sql_df(brand=None):
-    f = open('app/gcp.json')
-    data = json.load(f)
 
-    conn = pymysql.connect(host=data['host'], user=data['user'], passwd=data['passwd'], db=data['db'])
+    conn = pool.connect()
     cur = conn.cursor()
 
     query = "SELECT * FROM {}".format(brand)
 
-    df = pd.read_sql(query, conn,index_col='id')
+    df = pd.read_sql(query, conn, index_col='id')
 
     cur.close()
     conn.close()
 
     return df
 
-def count_queixas(brand=None):
-    f = open('app/gcp.json')
-    data = json.load(f)
 
-    conn = pymysql.connect(host=data['host'], user=data['user'], passwd=data['passwd'], db=data['db'])
+def count_queixas(brand=None):
+
+    conn = pool.connect()
     cur = conn.cursor()
 
     query = "SELECT COUNT(*) FROM {}".format(brand)
