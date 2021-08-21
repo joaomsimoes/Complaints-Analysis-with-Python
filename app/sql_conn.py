@@ -22,11 +22,6 @@ def init_db_connection():
 
     return engine
 
-""" test local
-def init_db_connection():
-    engine = sqlalchemy.create_engine(url="mysql://root:secretpassword@34.78.88.69/scrapper")
-    return engine
-""""
 
 db = init_db_connection()
 
