@@ -6,19 +6,18 @@ import os
 db_user = os.environ["DB_USER"]
 db_pass = os.environ["DB_PASS"]
 db_name = os.environ["DB_NAME"]
-db_socket_dir = os.environ.get("DB_SOCKET_DIR", "/cloudsql")
 cloud_sql_connection_name = os.environ["CLOUD_SQL_CONNECTION_NAME"]
 
 
 # https://cloud.google.com/sql/docs/mysql/connect-run - Connect Cloud Run to Cloud SQL
 def init_db_connection():
     pool = sqlalchemy.create_engine(
-        sqlalchemy.engine.url.URL.create(
+        sqlalchemy.engine.url.URL(
             drivername="mysql+pymysql",
             username=db_user,
             password=db_pass,
             database=db_name,
-            query={"unix_socket": "/cloudsql/{}/".format(cloud_sql_connection_name)}))
+            query={"unix_socket": "/cloudsql/{}".format(cloud_sql_connection_name)}))
 
     return pool
 
