@@ -38,7 +38,8 @@ def count_queixas(brand=None, engine=db):
 
     with engine.connect() as conn:
         query = "SELECT COUNT(*) FROM {}".format(brand)
-        conn.execute(query)
-        count_result = conn.fetchone()
+        query_result = conn.execute(query)
+        result = query_result.fetchall()
+        query_result.close()
 
-    return count_result
+    return result
