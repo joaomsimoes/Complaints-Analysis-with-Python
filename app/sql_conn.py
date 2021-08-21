@@ -17,10 +17,16 @@ def init_db_connection():
             username=db_user,
             password=db_pass,
             database=db_name,
-            query={"unix_socket": "/cloudsql/{}".format(cloud_sql_connection_name)}))
+            query={"unix_socket": "/cloudsql/{}".format(cloud_sql_connection_name)})
+            )
 
     return engine
 
+""" test local
+def init_db_connection():
+    engine = sqlalchemy.create_engine(url="mysql://root:secretpassword@34.78.88.69/scrapper")
+    return engine
+""""
 
 db = init_db_connection()
 
@@ -39,7 +45,6 @@ def count_queixas(brand=None, engine=db):
     with engine.connect() as conn:
         query = "SELECT COUNT(*) FROM {}".format(brand)
         query_result = conn.execute(query)
-        result = query_result.fetchall()
-        query_result.close()
+        count_result = query_result.fetchall()[0]
 
-    return result
+    return count_result
