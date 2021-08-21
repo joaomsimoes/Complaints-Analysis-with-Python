@@ -11,7 +11,7 @@ cloud_sql_connection_name = os.environ["CLOUD_SQL_CONNECTION_NAME"]
 
 
 # https://cloud.google.com/sql/docs/mysql/connect-run - Connect Cloud Run to Cloud SQL
-def init_unix_connection_engine():
+def init_db_connection():
     pool = sqlalchemy.create_engine(
         sqlalchemy.engine.url.URL.create(
             drivername="mysql+pymysql",
