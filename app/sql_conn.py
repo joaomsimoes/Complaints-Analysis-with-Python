@@ -18,9 +18,7 @@ def init_db_connection():
             username=db_user,
             password=db_pass,
             database=db_name,
-            query={"unix_socket": "/cloudsql/{}/".format(cloud_sql_connection_name)}),
-        db_config={'pool_size': 5, 'max_overflow': 2,
-                   'pool_timeout': 30, 'pool_recycle': 1800})
+            query={"unix_socket": "/cloudsql/{}/".format(cloud_sql_connection_name)}))
 
     return pool
 

@@ -6,5 +6,6 @@ wordcloud
 pandas
 bs4
 sqlalchemy
+pymysql
 plotly
 matplotlib
