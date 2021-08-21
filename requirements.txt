@@ -5,6 +5,6 @@ sklearn
 wordcloud
 pandas
 bs4
-pymysql
+sqlalchemy
 plotly
 matplotlib
