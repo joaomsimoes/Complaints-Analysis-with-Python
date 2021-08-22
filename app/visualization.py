@@ -3,6 +3,7 @@ from collections import Counter
 import plotly.express as px
 import streamlit as st
 import matplotlib.pyplot as plt
+import pandas as pd
 
 
 def display_topics(model, features, no_top_words=5):
@@ -19,7 +20,7 @@ def display_topics(model, features, no_top_words=5):
             new_list = []
     
     df_topicos = pd.DataFrame.from_dict(dicts)
-    st.write(df_topicos)
+    st.write(df_topicos.to_string(index=False))
 
 
 def word_cloud(word_freq, title=None, max_words=200):
