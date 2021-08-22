@@ -14,7 +14,7 @@ def display_topics(model, features, no_top_words=5):
 
 
 def word_cloud(word_freq, title=None, max_words=200):
-    wc = WordCloud(width=1000, height=500, background_color='white', colormap='bone',
+    wc = WordCloud(width=600, height=300, background_color='white', colormap='bone',
                    max_font_size=300, max_words=max_words, relative_scaling=1)
 
     # convert df to dict
