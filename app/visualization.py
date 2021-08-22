@@ -20,7 +20,7 @@ def display_topics(model, features, no_top_words=5):
             new_list = []
     
     df_topicos = pd.DataFrame.from_dict(dicts)
-    st.write(df_topicos.to_string(index=False))
+    st.write(df_topicos)
 
 
 def word_cloud(word_freq, title=None, max_words=200):
