@@ -36,6 +36,6 @@ input: ikea
 
 ### 2.2. Run
 
-´´´streamlit run main.py ´´´
+```streamlit run main.py```
 
 ### 2.3. Deploy in Google Cloud Run
