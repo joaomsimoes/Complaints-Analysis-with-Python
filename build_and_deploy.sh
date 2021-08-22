@@ -13,8 +13,8 @@ gcloud run deploy $SERVICE_NAME \
   --project $PROJECT_ID \
   --region $REGION \
   --allow-unauthenticated \
-  --cpu 2
-  --memory 2Gi
+  --cpu 2 \
+  --memory 2Gi \
   --add-cloudsql-instances $CONNECTION_NAME \
   --set-env-vars CLOUD_SQL_CONNECTION_NAME=$CONNECTION_NAME, \
     DB_USER=user, \
