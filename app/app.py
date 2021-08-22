@@ -27,7 +27,7 @@ def app():
     # Options
     col1, col2 = st.columns(2)
     with col1:
-        brand = st.selectbox('Escolha uma marca', ('worten', 'meo', 'shein', 'vodafone', 'fnac'))
+        brand = st.selectbox('Escolha uma marca', ('vodafone', 'worten', 'meo', 'ikea', 'fnac'))
     with col2:
         n_grams = st.selectbox('N-Gram', (1, 2))
     count_result = count_queixas(brand)[0]
