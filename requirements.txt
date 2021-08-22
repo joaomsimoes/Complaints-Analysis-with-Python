@@ -1,5 +1,6 @@
 streamlit
 nltk
+bs4
 textacy
 sklearn
 wordcloud
