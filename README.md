@@ -6,8 +6,6 @@ This project is divided in two sections:
   1. The Scrapper to save the data in a database
   2. The Streamlit App to do the analysis
 
-
-<br> </br>
 ## 1. Scrapper
 Before start this project you should create your own SQL database. I used MySQL but feel free to use any other database.
 
@@ -33,7 +31,6 @@ input: ikea
 2. some brands have a different name in the link, for example: nowo uses old name: cabovisao
 
 
-<br> </br>
 ## 2. Analysis -Streamlit App
 
 ### 2.1. Streamlit App - Installation
