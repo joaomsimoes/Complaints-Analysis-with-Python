@@ -1,0 +1,4 @@
+bs4
+sqlalchemy
+pymysql
+mysql-connector-python

@@ -1,0 +1,5 @@
+version: '3'
+services:
+  scrapper:
+    image: joaomsimoes/portaldaqueixa:meo
+    restart: on-failure

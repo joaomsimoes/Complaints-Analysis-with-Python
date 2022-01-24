@@ -6,6 +6,10 @@ import re
 import argparse
 from db import *
 
+parser = argparse.ArgumentParser()
+parser.add_argument("brand", type=str)
+args = parser.parse_args()
+
 
 def get_comments(brand=None):
     create_table(brand, 'comments')
@@ -68,6 +72,6 @@ def get_info(brand, url):
 
 
 if __name__ == '__main__':
-    brand = input('choose a brand:')
+    brand = args.brand
     get_links(brand)
     get_comments(brand)

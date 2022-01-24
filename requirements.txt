@@ -1,7 +1,6 @@
 streamlit
 nltk
 bs4
-textacy
 sklearn
 wordcloud
 pandas
@@ -9,3 +8,5 @@ sqlalchemy
 pymysql
 plotly
 matplotlib
+mysql-connector-python
+spacy

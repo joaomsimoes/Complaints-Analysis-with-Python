@@ -20,7 +20,7 @@ def display_topics(model, features, no_top_words=5):
             new_list = []
     
     df_topicos = pd.DataFrame.from_dict(dicts)
-    st.write(df_topicos)
+    st.table(df_topicos)
 
 
 def word_cloud(word_freq, title=None, max_words=200):
@@ -45,7 +45,7 @@ def describe(brand=None):
     st.dataframe(brand.describe().T)
 
 
-def time_series(brand=None):
+def time_series(brand=None, start=None, end=None):
     brand['year-month'] = brand['data'].dt.strftime('%Y-%m')
     timeseries = brand.groupby('year-month', as_index=False).size()
     fig = px.line(timeseries, x="year-month", y='size', labels={'year-month': 'Ano-mês', 'size': 'Total'}, )
