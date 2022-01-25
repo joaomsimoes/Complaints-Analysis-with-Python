@@ -1,6 +1,7 @@
 import sqlalchemy
 import json
 import pandas as pd
+import streamlit as st
 
 f = open('app/db.json')
 data = json.load(f)
@@ -19,7 +20,7 @@ def sql_df(brand=None, engine=db):
 
     with engine.connect() as conn:
         query = "SELECT * FROM {}".format(brand)
-        df = pd.read_sql(query, conn, index_col='id')
+        df = pd.read_sql(query, conn, index_col=None)
 
     return df
 

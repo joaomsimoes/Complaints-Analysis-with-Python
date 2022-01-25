@@ -23,6 +23,17 @@ def display_topics(model, features, no_top_words=5):
     st.table(df_topicos)
 
 
+def visualize_topics(tsne_embedding, df):
+    years = [2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021]
+
+    year = st.select_slider('Escolha uma ano', options=years, value=2021, key="year")
+
+    data = tsne_embedding.loc[df['year'] <= year]
+    fig = px.scatter(data, x='x', y='y', color='hue',
+                     title=f"Queixas até {year}")
+    st.write(fig)
+
+
 def word_cloud(word_freq, title=None, max_words=200):
     wc = WordCloud(width=600, height=300, background_color='white', colormap='bone',
                    max_font_size=300, max_words=max_words, relative_scaling=1)

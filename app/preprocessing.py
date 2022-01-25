@@ -3,6 +3,7 @@ import nltk
 import re
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.decomposition import NMF
+from sklearn.manifold import TSNE
 import pandas as pd
 import spacy
 
@@ -34,32 +35,18 @@ def date_parser(date_string):
 nltk.download('stopwords')
 stopwords = nltk.corpus.stopwords.words('portuguese')
 
-def stop_words():
+
+def stop_words(brand):
     """download the portuguese stopwords from the nltk library"""
 
     new_stopwords = ['tarde', 'venho', 'noite', 'dia', 'ja', 'pois', 'ser', 'ter', 'tendo', 'nao',
                      'porque', 'fiz', 'janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro',
                      'outubro', 'novembro', 'dezembro', 'ate', 'talvez', 'aqui', 'portanto', 'estar', 'iria', 'ia',
-                     'eis', 'vem', 'ir', 'preciso', 'sido', 'acerca', 'seguinte', 'domingos', ]
+                     'eis', 'vem', 'ir', 'preciso', 'sido', 'acerca', 'seguinte', 'domingos', 'gostaria']
     stopwords.extend(new_stopwords)
+    stopwords.extend([brand])
 
     return stopwords
-
-
-def lemma(text):
-    doc = nlp(text)
-    result = " ".join([token.lemma_ for token in doc])
-
-    return result
-
-
-def preprocessing(df=None):
-    """text preprocessing"""
-    df['comment'] = df['comment'].apply(lemma)
-    df['comment'] = df['comment'].apply(lambda token: [word for word in token if word.isalpha()])
-    df['comment'] = df['comment'].apply(str)
-
-    return df
 
 
 def tfidf_vect(df, column='comment', stopwords=None, min_df=None, max_df=None, n_gram=None):
@@ -75,8 +62,18 @@ def tfidf_vect(df, column='comment', stopwords=None, min_df=None, max_df=None, n
 def topic(vectors_text=None, n_components=3):
     nmf_text_model = NMF(n_components=n_components, random_state=42)
     w_text_matrix = nmf_text_model.fit_transform(vectors_text)
-    h_text_matrix = nmf_text_model.components_
 
-    print(w_text_matrix.sum(axis=0)/w_text_matrix.sum()*100)
+    return nmf_text_model, w_text_matrix
 
-    return nmf_text_model
+
+def tsne_topics(w_text_matrix):
+    tsne = TSNE(random_state=42)
+    tsne_embedding = tsne.fit_transform(w_text_matrix)
+    tsne_embedding = pd.DataFrame(tsne_embedding, columns=['x', 'y'])
+    tsne_embedding['hue'] = w_text_matrix.argmax(axis=1)
+    tsne_embedding['hue'] = tsne_embedding['hue'].map({0: 'Tópico 1',
+                                                       1: 'Tópico 2',
+                                                       2: 'Tópico 3',
+                                                       3: 'Tópico 4'})
+
+    return tsne_embedding
