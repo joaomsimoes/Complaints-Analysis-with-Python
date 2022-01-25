@@ -2,7 +2,9 @@ from wordcloud import WordCloud
 from collections import Counter
 import plotly.express as px
 import streamlit as st
+from streamlit import components
 import matplotlib.pyplot as plt
+import pyLDAvis.sklearn
 import pandas as pd
 
 
@@ -21,6 +23,13 @@ def display_topics(model, features, no_top_words=5):
     
     df_topicos = pd.DataFrame.from_dict(dicts)
     st.table(df_topicos)
+
+
+def lda_display(lda_model, count_vectors, count_vectorizer):
+    lda_display = pyLDAvis.sklearn.prepare(lda_model, count_vectors, count_vectorizer, sort_topics=False)
+    html_string = pyLDAvis.prepared_data_to_html(lda_display, template_type='simple')
+
+    components.v1.html(html_string, width=700, height=1400)
 
 
 def word_cloud(word_freq, title=None, max_words=200):

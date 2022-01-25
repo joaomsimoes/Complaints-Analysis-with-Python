@@ -24,7 +24,7 @@ def sql_df(brand=None, engine=db):
     return df
 
 
-def brands(engine=db):
+def sql_brands(engine=db):
     with engine.connect() as conn:
         query = "SHOW TABLES WHERE `Tables_in_portaldaqueixa` NOT LIKE '%%_links'"
         query_result = conn.execute(query)

@@ -1,4 +1,4 @@
-from app.preprocessing import *
+from app.topics import *
 from app.visualization import *
 from app.sql_conn import *
 import datetime
@@ -31,7 +31,7 @@ def app():
     # Options
     col1, col2 = st.columns(2)
     with col1:
-        brand = st.selectbox('Escolha uma marca', (brands()))
+        brand = st.selectbox('Escolha uma marca', (sql_brands()))
         start_date = st.date_input('Data início', first_date)
     with col2:
         n_grams = st.selectbox('N-Gram', (1, 2))
@@ -39,18 +39,10 @@ def app():
 
     ok = st.button('Ver análise')
     if ok:
-        df = sql_df(brand)
-        df['data'] = df['data'].map(date_parser, na_action='ignore')
-        mask = (df['data'].dt.date > start_date) & (df['data'].dt.date <= end_date)
-        df = df.loc[mask]
+        df = sql_df()
         with st.spinner('A carregar {} queixas... Pode demorar um minutinho! :coffee: :coffee:'
                         ' Pet projet = pequeno orçamento!'.format(len(df))):
-            df = sql_df(brand)
-            df['data'] = df['data'].map(date_parser, na_action='ignore')
-            mask = (df['data'].dt.date > start_date) & (df['data'].dt.date <= end_date)
-            df = df.loc[mask]
-            stopwords = stop_words()
-            tfidf, tfidf_text, vectors_text = tfidf_vect(df, column='comment', stopwords=stopwords,
+            df, count_vectorizer, count_vectors = count_vect(df, column='comment',
                                                          min_df=1, max_df=1.0, n_gram=n_grams)
 
         # wordcloud
@@ -59,16 +51,17 @@ def app():
                  'Para isso, usei a fórmula TF-IDF para identificar as palavras com uma maior '
                  'importancia neste documento.')
         with st.spinner('A carregar...'):
-            word_cloud(tfidf['TF-IDF'], max_words=150)
+            word_cloud(df['TF-IDF'], max_words=150)
         st.text("")
 
         # topic finder
         st.header('Topic Finder')
         st.write('Para cada marca, poderá exisitir uma diversidade de tópicos que não estão categorizados no Portal da Queixa. '
                  'Fazer este processo manualmente poderá ser penoso. Para isso usei técnicas de unsupervised learning para encontrar os tópicos mais relevantes.')
-        with st.spinner('A carregar...'):
-            nmf_text_model = topic(vectors_text, n_components=4)
-            display_topics(model=nmf_text_model, features=tfidf_text.get_feature_names(), no_top_words=5)
+        with st.spinner('A carregar... Vou demorar um minutinho a processar os tópicos'):
+            lda_text_model = topic(count_vectors, n_components=4)
+            display_topics(model=lda_text_model, features=count_vectorizer.get_feature_names(), no_top_words=5)
+            lda_display(lda_text_model, count_vectors, count_vectorizer)
         st.text("")
 
         # eda
