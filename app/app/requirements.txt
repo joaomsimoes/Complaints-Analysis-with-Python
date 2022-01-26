@@ -1,6 +1,5 @@
 streamlit
 nltk
-bs4
 sklearn
 wordcloud
 pandas

@@ -37,7 +37,12 @@ def app():
     with col2:
         n_grams = st.selectbox('N-Gram', (1, 2))
 
-    if st.button('Ver análise'):
+    if 'start' not in st.session_state:
+        st.session_state['start'] = False
+
+    if st.button('Ver análise') or st.session_state.start:
+        st.session_state['start'] = True
+
         df = sql_df(brand)
         with st.spinner('A carregar {} queixas... Pode demorar um minutinho! :coffee: :coffee:'
                         ' Pet projet = pequeno orçamento!'.format(len(df))):
@@ -68,7 +73,7 @@ def app():
             nmf_text_model, w_text_matrix = topic(vectors_text, n_components=4)
             display_topics(model=nmf_text_model, features=tfidf_text.get_feature_names(), no_top_words=5)
 
-        with st.spinner('A reduzir as dimensões dos tópicos!...'):
+        with st.spinner('A reduzir as dimensões dos tópicos!... Vai demorar um minutinho'):
             tsne_embedding = tsne_topics(w_text_matrix)
         with st.spinner('A preparar o gráfico...'):
             visualize_topics(tsne_embedding, df)

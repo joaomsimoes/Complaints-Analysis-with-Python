@@ -6,6 +6,7 @@ from sklearn.decomposition import NMF
 from sklearn.manifold import TSNE
 import pandas as pd
 import spacy
+import streamlit as st
 
 nlp = spacy.load('pt_core_news_sm', disable=['parser', 'ner'])
 
@@ -59,6 +60,7 @@ def tfidf_vect(df, column='comment', stopwords=None, min_df=None, max_df=None, n
     return tfidf, tfidf_text, vectors_text
 
 
+@st.cache
 def topic(vectors_text=None, n_components=3):
     nmf_text_model = NMF(n_components=n_components, random_state=42)
     w_text_matrix = nmf_text_model.fit_transform(vectors_text)
@@ -66,6 +68,7 @@ def topic(vectors_text=None, n_components=3):
     return nmf_text_model, w_text_matrix
 
 
+@st.cache
 def tsne_topics(w_text_matrix):
     tsne = TSNE(random_state=42)
     tsne_embedding = tsne.fit_transform(w_text_matrix)
