@@ -5,10 +5,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.decomposition import NMF
 from sklearn.manifold import TSNE
 import pandas as pd
-import spacy
 import streamlit as st
-
-nlp = spacy.load('pt_core_news_sm', disable=['parser', 'ner'])
 
 
 def date_parser(date_string):
