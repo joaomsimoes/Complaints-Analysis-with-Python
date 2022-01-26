@@ -84,3 +84,7 @@ def app():
         st.write('Por fim, uma breve analise temporal do total das queixas mensais.')
         with st.spinner('A carregar...'):
             time_series(df)
+
+
+if __name__ == '__main__':
+    app()
