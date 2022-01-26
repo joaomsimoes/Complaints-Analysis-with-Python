@@ -3,7 +3,7 @@ import json
 import pandas as pd
 import streamlit as st
 
-f = open('app/db.json')
+f = open('db.json')
 data = json.load(f)
 
 
