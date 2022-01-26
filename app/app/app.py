@@ -1,6 +1,6 @@
-from app.preprocessing import *
-from app.visualization import *
-from app.sql_conn import *
+from preprocessing import *
+from visualization import *
+from sql_conn import *
 
 
 st.set_page_config(
