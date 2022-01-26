@@ -8,3 +8,4 @@ pymysql
 plotly
 matplotlib
 mysql-connector-python
+mysqlclient
