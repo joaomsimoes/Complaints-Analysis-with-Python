@@ -24,9 +24,9 @@ def display_topics(model, features, no_top_words=5):
 
 
 def visualize_topics(tsne_embedding, df):
-    years = [2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021]
+    years = [2015, 2016, 2017, 2018, 2019, 2020, 2021]
 
-    st.select_slider('Escolha uma ano', options=years, value=2021, key="year")
+    st.select_slider('Escolha uma ano', options=years, key="year")
 
     data = tsne_embedding.loc[df['year'] <= st.session_state.year]
     fig = px.scatter(data, x='x', y='y', color='hue',
