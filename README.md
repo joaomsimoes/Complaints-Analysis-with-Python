@@ -14,4 +14,4 @@ See the [notebook](https://github.com/joaomsimoes/Complaints-Analysis-with-Pytho
 For this project I used the [Blueprints for Text Analytics Using Python](https://www.amazon.com/Blueprints-Text-Analytics-Using-Python/dp/149207408X/) as a guide.
 <br><br>
 ## The App
-[Try it!](http://3.122.250.7/)
+[Try it!](http://18.185.153.147/)
