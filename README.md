@@ -7,6 +7,8 @@ This project is divided in two sections:
   2. The Streamlit App to do the analysis
 
 
-Before building the app to analyse more brands I did a first exploratory data analysis.
+Before building the app I did an exploratory data analysis to try to see which techniques I could use.
 <br><br>
 See the [notebook](https://github.com/joaomsimoes/Complaints-Analysis-with-Python/blob/main/eda.ipynb).
+<br><br>
+For this project I used the [Blueprints for Text Analytics Using Python](https://www.amazon.com/Blueprints-Text-Analytics-Using-Python/dp/149207408X/) as a guide.
