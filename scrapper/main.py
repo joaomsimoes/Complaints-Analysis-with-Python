@@ -5,6 +5,11 @@ from bs4 import BeautifulSoup
 import re
 import argparse
 from db import *
+import logging
+
+logging.basicConfig(format='%(asctime)s - %(message)s',
+                    datefmt='%Y-%m-%d %H:%M:%S',
+                    level=logging.INFO)
 
 parser = argparse.ArgumentParser()
 parser.add_argument("brand", type=str)
@@ -20,8 +25,8 @@ def get_comments(brand=None):
         complaint = get_info(brand, link)
         write_sql(brand, complaint, link)
         update_link(brand, link)
-        print('-' * 20)
-        print(link)
+        logging.info('-' * 20)
+        logging.info(link)
 
 
 def get_links(brand):
@@ -49,7 +54,7 @@ def get_links(brand):
         for link in bs.find_all('a', href=re.compile(f'^(https://portaldaqueixa.com/brands/{brand}/complaints/{brand}.*)')):
             if 'href' in link.attrs:
                 new_page = link.attrs['href']
-                print(new_page)
+                logging.info(new_page)
                 links_to_db(brand, new_page, page)
 
 

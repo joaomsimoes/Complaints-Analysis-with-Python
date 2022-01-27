@@ -1,7 +1,6 @@
 import sqlalchemy
 import json
 import pandas as pd
-import streamlit as st
 
 f = open('db.json')
 data = json.load(f)
@@ -13,11 +12,8 @@ def init_db_connection():
     return engine
 
 
-db = init_db_connection()
-
-
-def sql_df(brand=None, engine=db):
-
+def sql_df(brand=None):
+    engine = init_db_connection()
     with engine.connect() as conn:
         query = "SELECT * FROM {}".format(brand)
         df = pd.read_sql(query, conn, index_col=None)
@@ -25,7 +21,8 @@ def sql_df(brand=None, engine=db):
     return df
 
 
-def brands(engine=db):
+def brands():
+    engine = init_db_connection()
     with engine.connect() as conn:
         query = "SHOW TABLES WHERE `Tables_in_portaldaqueixa` NOT LIKE '%%_links'"
         query_result = conn.execute(query)

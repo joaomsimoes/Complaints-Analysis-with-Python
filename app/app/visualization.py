@@ -9,16 +9,16 @@ import pandas as pd
 def display_topics(model, features, no_top_words=5):
     dicts = {}
     new_list = []
-    
+
     for topic, word_vector in enumerate(model.components_):
         largest = word_vector.argsort()[::-1]
         dicts["Tópico " + str(topic+1)] = new_list
-        
+
         for i in range(0, 5):
-          new_list.append(features[largest[i]])
-          if i == 4:
-            new_list = []
-    
+            new_list.append(features[largest[i]])
+            if i == 4:
+                new_list = []
+
     df_topicos = pd.DataFrame.from_dict(dicts)
     st.table(df_topicos)
 
