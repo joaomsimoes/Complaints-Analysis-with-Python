@@ -11,7 +11,7 @@ This project is divided into two sections:
 
 Before building the app I did an exploratory data analysis to try to see which techniques I could use.
 <br><br>
-###See the [notebook](https://github.com/joaomsimoes/Complaints-Analysis-with-Python/blob/main/eda.ipynb).
+### See the [notebook](https://github.com/joaomsimoes/Complaints-Analysis-with-Python/blob/main/eda.ipynb).
 
 For this project I used the [Blueprints for Text Analytics Using Python](https://www.amazon.com/Blueprints-Text-Analytics-Using-Python/dp/149207408X/) as a guide.
 <br><br>
